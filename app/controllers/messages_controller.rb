@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:edit, :update]
+  before_action :set_message, only: [:edit, :update, :destroy]
   def index
     @message = Message.new
     # Messageを全て取得する。
@@ -40,4 +40,8 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:name, :body)
   end
   ## ここまで
+
+  def set_message
+    @message = Message.find(params[:id])
+  end
 end
